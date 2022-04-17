@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center h-100">
+  <div class="row align-items-center" style="width: 50em">
+    <form>
+      <div class="row form-group mb-3">
+        <h1 class="d-flex justify-content-center">Reservation panel</h1>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label" for="select-car">Vehicle</label>
+        <select class="form-select" required="true" id="select-car">
+          <option value="1-id">TestMark1 TestModel1; lpn1</option>
+          <option value="2-id">TestMark2 TestModel2; lpn2</option>
+          <option value="3-id">TestMark3 TestModel3; lpn3</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label" for="fault-details">Fault details</label>
+        <textarea type="text" class="form-control" id="fault-details"
+                  placeholder="details" rows="4" style="resize: none;"></textarea>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label" for="visit-date">Preferred date of visit</label>
+        <input class="form-control" type="date" id="visit-date" min="{{currentDate | date:'yyyy-MM-dd'}}">
+      </div>
+      <button type="submit" class="btn btn-success w-100 mb-5">Next</button>
+    </form>
+  </div>
+</div>

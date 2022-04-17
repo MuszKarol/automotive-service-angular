@@ -7,6 +7,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ReservationsComponent } from './reservations/reservations.component';
+import { ReservationPanelComponent } from './reservation-panel/reservation-panel.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { RegisterComponent } from './register/register.component';
     HomepageComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    OrdersComponent,
+    ReservationsComponent,
+    ReservationPanelComponent,
+    VehiclesComponent
   ],
   imports: [
     BrowserModule,
