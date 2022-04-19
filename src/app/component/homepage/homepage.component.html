@@ -1,0 +1,30 @@
+<div class="container">
+  <header class="d-flex row align-items-center border-bottom text-justify pt-5">
+    <h1 class="mb-3 mt-3">{{details.automotiveServiceName}}</h1>
+    <p>{{details.description}}</p>
+    <p class="mb-3"> <b>Address: </b> {{getFullAddress(details.address)}}</p>
+    <p class="mb-3"> <b>Contact: </b> {{details.phoneNumber}} </p>
+  </header>
+  <main class="border-bottom">
+    <h4 class="mt-3 mb-3">Opening hours</h4>
+    <div class="row g-5 text-center border-bottom">
+      <div class="col-md-3" *ngFor="let hour of sortWeekDays(details.listOfOperatingHours)">
+        <h5>{{hour.dayName}}</h5>
+        <p>{{hour.openingHour}} - {{hour.closingHour}}</p>
+      </div>
+    </div>
+    <h4 class="mt-3">Mechanical services</h4>
+    <div class="mt-3">
+      <div class="row g-5 text-center">
+        <div class="col m-md-5" *ngFor="let mechanicalService of details.listOfMechanicalServices">
+          <h5>{{mechanicalService.type}}</h5>
+          <p>{{mechanicalService.description}}</p>
+          <p>{{mechanicalService.cost}} {{mechanicalService.currency}}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Created by --- 2022</p>
+  </footer>
+</div>
