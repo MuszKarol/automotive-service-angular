@@ -13,5 +13,4 @@ export class CompanyDetailsService {
   getCompanyDetails(): Observable<CompanyDetailsDTO> {
     return this.httpClient.get<CompanyDetailsDTO>("http://localhost:8080/about");
   }
-
 }

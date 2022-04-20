@@ -40,11 +40,11 @@ export class HomepageComponent implements OnInit {
     ]);
 
     return days.sort((first, second) => {
-      let f = daysMap.get(first.dayName.toLowerCase());
-      let s = daysMap.get(second.dayName.toLowerCase());
+      let firstLower = daysMap.get(first.dayName.toLowerCase());
+      let secondLower = daysMap.get(second.dayName.toLowerCase());
 
       // @ts-ignore
-      return f - s;
+      return firstLower - secondLower;
     });
   }
 
