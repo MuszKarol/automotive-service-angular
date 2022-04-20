@@ -1,38 +1,42 @@
 <div class="container d-flex justify-content-center h-100">
   <div class="row align-items-center" style="width: 25em">
-    <form>
+    <form #newUser="ngForm" (ngSubmit)="registerUser(newUser.value)">
       <div class="row form-group mb-3">
         <h1 class="d-flex justify-content-center">Registration</h1>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="nameInput">Name</label>
-        <input type="text" class="form-control" id="nameInput" placeholder="name">
+        <input type="text" class="form-control" id="nameInput" placeholder="name" name="name" ngModel>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="surnameInput">Surname</label>
-        <input type="text" class="form-control" id="surnameInput" placeholder="surname">
+        <input type="text" class="form-control" id="surnameInput" placeholder="surname" name="surname" ngModel>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="emailInput">Email</label>
-        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required="true">
+        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required="true" name="email" ngModel>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="passwordInput">Password</label>
-        <input type="password" class="form-control" id="passwordInput" placeholder="password" required="true">
+        <input type="password" class="form-control" id="passwordInput" placeholder="password" required="true" name="password1">
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="passwordInput2">Confirm Password</label>
-        <input type="password" class="form-control" id="passwordInput2" placeholder="password" required="true">
+        <input type="password" class="form-control" id="passwordInput2" placeholder="password" required="true" name="password2">
       </div>
       <div class="form-group mb-3">
-        <label class="form-label" for="addressInput">Address</label>
-        <input type="text" class="form-control" id="addressInput" placeholder="Number Street City PostalCode Country">
+        <label class="form-label">Address</label>
+        <input type="text" class="form-control mb-1" placeholder="Building Number" name="bNumber" ngModel>
+        <input type="text" class="form-control mb-1" placeholder="Street" name="street" ngModel>
+        <input type="text" class="form-control mb-1" placeholder="City" name="city" ngModel>
+        <input type="text" class="form-control mb-1" placeholder="PostalCode" name="postalCode" ngModel>
+        <input type="text" class="form-control mb-1" placeholder="Country" name="country" ngModel>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="phoneNumberInput">Phone Number</label>
-        <input type="text" class="form-control" id="phoneNumberInput" placeholder="phone number" required="true">
+        <input type="text" class="form-control" id="phoneNumberInput" name="phoneNumber" placeholder="phone number" required="true" ngModel>
       </div>
-      <button type="submit" class="btn btn-success w-100 mb-5">Register</button>
+      <button type="submit" value = "submit" class="btn btn-success w-100 mb-5" onClick="window.location.reload();">Register</button>
     </form>
   </div>
 </div>
