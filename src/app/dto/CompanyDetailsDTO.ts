@@ -3,8 +3,7 @@ import {AddressDTO} from "./AddressDTO";
 import {DayDTO} from "./DayDTO";
 
 export interface CompanyDetailsDTO {
-  id: string
-  automotiveServiceName: string
+  companyName: string
   description: string
   phoneNumber: string
   listOfMechanicalServices: MechanicalServiceDTO[]

@@ -1,112 +1,33 @@
 <div class="container d-flex justify-content-center h-100">
   <div class="row align-items-center w-100">
-    <ul class="list-group p-5">
-      <h3 class="d-flex justify-content-center mb-4">Orders</h3>
-
-      <li class="list-group-item col align-items-lg-center">
-        <div class="d-flex justify-content-between align-items-start">
-          <p>Created: 2020-05-02</p>
-          <p>Creator: test@test.pl</p>
-          <div>
-            <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-            <button type="button" class="btn btn-danger">Remove</button>
-          </div>
+    <ul class="list-group p-0 h-75">
+      <form class="list-group-item d-flex justify-content-between" #carPart="ngForm" (ngSubmit)="createNewCarPart(carPart.value)">
+        <div>
+          <label><b>Code</b></label>
+          <input type="text" class="form-control col-sm" placeholder="code" name="code" ngModel>
         </div>
-
-        <ul>
-          <form class="row w-75 border-top">
-            <input type="text" class="form-control col-sm" id="code-input" placeholder="Code">
-            <input type="text" class="form-control col-sm" id="name-input" placeholder="Name">
-            <input type="text" class="form-control col-sm" id="price-input" placeholder="Price">
-            <input type="text" class="form-control col-sm" id="quantity-input" placeholder="Quantity">
-            <button type="button" class="col-sm btn btn-success">Add</button>
-          </form>
-          <!--          <li class="d-flex justify-content-between w-50 border-top">-->
-          <!--            <p>Code: 000-112</p>-->
-          <!--            <p>Name: Test2</p>-->
-          <!--            <p>Price: 23zl</p>-->
-          <!--            <p>Quantity: 1</p>-->
-          <!--          </li>-->
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-111</p>
-            <p class="col-sm">Name: Test1</p>
-            <p class="col-sm">Price: 155zl</p>
-            <p class="col-sm">Quantity: 1</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-112</p>
-            <p class="col-sm">Name: Test222</p>
-            <p class="col-sm">Price: 29zl</p>
-            <p class="col-sm">Quantity: 59</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 0-113</p>
-            <p class="col-sm">Name: Test78</p>
-            <p class="col-sm">Price: 20zl</p>
-            <p class="col-sm">Quantity: 100</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-114</p>
-            <p class="col-sm">Name: Test4</p>
-            <p class="col-sm">Price: 1zl</p>
-            <p class="col-sm">Quantity: 3</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-        </ul>
-      </li>
-
-      <li class="list-group-item col align-items-lg-center">
-        <div class="d-flex justify-content-between align-items-start">
-          <p>Created: 2020-05-02</p>
-          <p>Creator: test@test.pl</p>
-          <div>
-            <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-            <button type="button" class="btn btn-danger">Remove</button>
-          </div>
+        <div>
+          <label><b>Part name</b></label>
+          <input type="text" class="form-control col-sm" placeholder="part name" name="partName" ngModel>
         </div>
-
-        <ul>
-          <form class="row w-75 border-top">
-            <input type="text" class="form-control col-sm" id="code-input" placeholder="Code">
-            <input type="text" class="form-control col-sm" id="name-input" placeholder="Name">
-            <input type="text" class="form-control col-sm" id="price-input" placeholder="Price">
-            <input type="text" class="form-control col-sm" id="quantity-input" placeholder="Quantity">
-            <button type="button" class="col-sm btn btn-success">Add</button>
-          </form>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-111</p>
-            <p class="col-sm">Name: Test1</p>
-            <p class="col-sm">Price: 155zl</p>
-            <p class="col-sm">Quantity: 1</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-112</p>
-            <p class="col-sm">Name: Test222</p>
-            <p class="col-sm">Price: 29zl</p>
-            <p class="col-sm">Quantity: 59</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 0-113</p>
-            <p class="col-sm">Name: Test78</p>
-            <p class="col-sm">Price: 20zl</p>
-            <p class="col-sm">Quantity: 100</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-          <li class="row w-75 border-top">
-            <p class="col-sm">Code: 000-114</p>
-            <p class="col-sm">Name: Test4</p>
-            <p class="col-sm">Price: 1zl</p>
-            <p class="col-sm">Quantity: 3</p>
-            <button type="button" class="col-sm btn btn-danger">Remove</button>
-          </li>
-        </ul>
+        <div>
+          <label><b>Price</b></label>
+          <input type="text" class="form-control col-sm" placeholder="price" name="price" ngModel>
+        </div>
+        <div>
+          <label><b>Quantity</b></label>
+          <input type="number" class="form-control col-sm" placeholder="quantity" name="quantity" ngModel>
+        </div>
+        <button type="submit" value="submit" class="btn btn-success" onClick="window.location.reload();">Add</button>
+      </form>
+      <li class="list-group-item d-flex justify-content-between" *ngFor="let mechanicalPart of getCarPartList()">
+        <p><b>Code: </b>{{mechanicalPart.code}}</p>
+        <p><b>Part name: </b>{{mechanicalPart.name}}</p>
+        <p><b>Price: </b>{{mechanicalPart.price}}</p>
+        <p><b>Quantity: </b>{{mechanicalPart.quantity}}</p>
+        <button type="button" class="btn btn-danger" (click)="removePart(mechanicalPart.code)"
+                onClick="window.location.reload();">Remove</button>
       </li>
-
     </ul>
   </div>
 </div>

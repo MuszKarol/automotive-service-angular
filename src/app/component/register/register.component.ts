@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {UserCreateDTO} from "../../dto/UserCreateDTO";
 
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,9 +11,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   registerUser(model: any) {
     if (model.vin == '') {

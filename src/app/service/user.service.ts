@@ -12,8 +12,7 @@ import {ReservationDTO} from "../dto/ReservationDTO";
 export class UserService {
   carApiURL = "http://localhost:9091";
   serviceApiURL = "http://localhost:8080";
-  userId = "00c8d17b-f242-4b35-8cf1-74446529d437";
-  // userId = "feab8399-bc4f-4f04-ba98-c27d14740867";
+  userId = "584fa7c0-dd6e-4b9c-9275-133bae8fcbcb";  //TODO remove
   cars!: CarDTO[];
   carsInGroups!: CarGroupDTO[];
 
@@ -72,7 +71,6 @@ export class UserService {
       },
       error => {
         console.log(error);
-      }
-    )
+      });
   }
 }
