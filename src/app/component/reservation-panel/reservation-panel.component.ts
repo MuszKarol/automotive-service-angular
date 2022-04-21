@@ -26,7 +26,7 @@ export class ReservationPanelComponent implements OnInit {
 
     const reservation = {
       faultDetails: model.faultDetails,
-      bookingDate: model.visitDate,
+      carDeliveryDate: model.visitDate,
       clientEmail: "test@test.com",
       mechanicEmail: "mechanictest@test.com",
       vinCode: model.vin

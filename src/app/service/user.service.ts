@@ -46,7 +46,7 @@ export class UserService {
   }
 
   postNewReservation(reservation: ReservationDTO) {
-    this.httpClient.post("http://localhost:8080/booking/new", reservation)
+    this.httpClient.post("http://localhost:8080/visits/new", reservation)
       .subscribe( response => {
           console.log(response);
         },

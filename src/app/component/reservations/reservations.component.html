@@ -1,70 +1,66 @@
 <div class="modal-body row justify-content-between m-0 p-0 h-100">
   <div class="col-md-6 p-0 mt-4">
-    <ul class="list-group p-5">
-      <h3 class="d-flex justify-content-center mb-4">Pending</h3>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark1 TestModel1</p>
+    <h3 class="d-flex justify-content-center mt-5">Pending</h3>
+    <ul class="list-group p-4 " style="height: 85vh; overflow:hidden; overflow-y:scroll;">
+      <li class="list-group-item col" *ngFor="let visit of getAllPendingVisitRequests()">
         <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-          <button type="button" class="btn btn-warning" style="margin-right: 1em">Modify</button>
-          <button type="button" class="btn btn-danger">Reject</button>
+          <p><b>Client phone number:</b> {{visit.clientPhoneNumber}}</p>
+          <p><b>Client email:</b> {{visit.clientEmail}}</p>
+          <p><b>Visit date (customer suggestion):</b> {{visit.carDeliveryDate}}</p>
+          <p><b>Fault details: </b> {{visit.faultDetails}}</p>
+          <p><b>Car:</b> {{visit.brandName}} {{visit.modelName}}</p>
+          <p><b>VIN code:</b> {{visit.vinCode}}</p>
         </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark2 TestModel2</p>
-        <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-          <button type="button" class="btn btn-warning" style="margin-right: 1em">Modify</button>
-          <button type="button" class="btn btn-danger">Reject</button>
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <p><b>ID:</b> {{visit.id}}</p>
+          <div>
+            <button type="button" class="btn btn-success" style="margin-right: 1em" (click)="acceptReservationRequest(visit)"
+                    onClick="window.location.reload();" >Accept</button>
+
+            <button type="button" class="btn btn-danger" (click)="rejectReservationRequest(visit)"
+                    onClick="window.location.reload();">Reject</button>
+          </div>
         </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark3 TestModel3</p>
-        <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-          <button type="button" class="btn btn-warning" style="margin-right: 1em">Modify</button>
-          <button type="button" class="btn btn-danger">Reject</button>
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark4 TestModel4</p>
-        <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Accept</button>
-          <button type="button" class="btn btn-warning" style="margin-right: 1em">Modify</button>
-          <button type="button" class="btn btn-danger">Reject</button>
+        <div class="border-top">
+          <form class="d-flex justify-content-between align-items-start mb-2" #reservation="ngForm"
+                (ngSubmit)="modifyReservationRequest(reservation.value, visit.id)">
+            <div class="p-2">
+              <b>Delivery car date</b>
+              <input type="date" class="form-control" name="deliveryDate" ngModel>
+            </div>
+            <div class="p-2">
+              <b>Start service date</b>
+              <input type="date" class="form-control" name="startServiceDate" ngModel>
+            </div>
+            <div class="p-2">
+              <b>End service date</b>
+              <input type="date" class="form-control" name="endServiceDate" ngModel>
+            </div>
+            <button type="submit" value="submit" class="btn btn-warning mt-4" onClick="window.location.reload();">
+              Modify
+            </button>
+          </form>
         </div>
       </li>
     </ul>
   </div>
   <div class="col-md-6 p-0 mt-4">
-    <ul class="list-group p-5">
-      <h3 class="d-flex justify-content-center mb-4">Accepted</h3>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark5 TestModel5</p>
+    <h3 class="d-flex justify-content-center mt-5">Accepted</h3>
+    <ul class="list-group p-4" style="height: 85vh; overflow:hidden; overflow-y:scroll;">
+      <li class="list-group-item d-flex justify-content-between align-items-start"
+          *ngFor="let visit of getAllAcceptedAndUnfinishedVisits()">
         <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Start</button>
-          <button type="button" class="btn btn-danger">Remove</button>
+          <p><b>Status:</b> {{visit.serviceStatus}}</p>
+          <p><b>Client phone number:</b> {{visit.clientPhoneNumber}}</p>
+          <p><b>Fault details: </b> {{visit.faultDetails}}</p>
+          <p><b>Car:</b> {{visit.brandName}} {{visit.modelName}}</p>
+          <p><b>VIN code:</b> {{visit.vinCode}}</p>
         </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark6 TestModel6</p>
         <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Start</button>
-          <button type="button" class="btn btn-danger">Remove</button>
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark7 TestModel7</p>
-        <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Start</button>
-          <button type="button" class="btn btn-danger">Remove</button>
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <p>TestMark8 TestModel8</p>
-        <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em">Start</button>
-          <button type="button" class="btn btn-danger">Remove</button>
+          <button type="button" class="btn btn-success" style="margin-right: 1em" (click)="startService(visit)"
+                  onClick="window.location.reload();">Start</button>
+          <button type="button" class="btn btn-danger" (click)="finishService(visit)"
+                  onClick="window.location.reload();">End</button>
         </div>
       </li>
     </ul>
