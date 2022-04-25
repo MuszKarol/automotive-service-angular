@@ -1,8 +1,8 @@
 <div class="container d-flex justify-content-center h-100">
   <div class="row align-items-center" style="width: 50em">
-    <form #reservation="ngForm" (ngSubmit)="postNewReservation(reservation.value)">
+    <form #reservation="ngForm" (ngSubmit)="addNewVisit(reservation.value)">
       <div class="row form-group mb-3">
-        <h1 class="d-flex justify-content-center">Reservation panel</h1>
+        <h1 class="d-flex justify-content-center">Visit panel</h1>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="select-car">Vehicle</label>

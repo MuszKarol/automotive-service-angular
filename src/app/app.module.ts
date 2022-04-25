@@ -8,11 +8,12 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { OrdersComponent } from './component/orders/orders.component';
-import { ReservationsComponent } from './component/reservations/reservations.component';
-import { ReservationPanelComponent } from './component/reservation-panel/reservation-panel.component';
+import { VisitsComponent } from './component/visits/visits.component';
+import { VisitPanelComponent } from './component/visit-panel/visit-panel.component';
 import { VehiclesComponent } from './component/vehicles/vehicles.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { UserVisitsComponent } from './component/user-visits/user-visits.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import {FormsModule} from "@angular/forms";
     LoginComponent,
     RegisterComponent,
     OrdersComponent,
-    ReservationsComponent,
-    ReservationPanelComponent,
-    VehiclesComponent
+    VisitsComponent,
+    VisitPanelComponent,
+    VehiclesComponent,
+    UserVisitsComponent
   ],
     imports: [
         BrowserModule,

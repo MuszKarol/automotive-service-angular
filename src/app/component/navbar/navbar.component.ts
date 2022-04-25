@@ -30,6 +30,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.userService.removeTokenAndLoginData();
-    window.location.reload();
+    this.userService.reloadToHomepage()
   }
 }

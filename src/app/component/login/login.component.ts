@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       if (token?.token != undefined) {
         this.userService.setTokenAndLoginData(token, loginDTO);
         window.location.reload();
+        this.userService.reloadToHomepage();
       }
     }
   }

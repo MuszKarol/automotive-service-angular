@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompanyDetailsService} from "../../service/company-details.service";
 import {CompanyDetailsDTO} from "../../dto/CompanyDetailsDTO";
 import {AddressDTO} from "../../dto/AddressDTO";
@@ -10,21 +10,22 @@ import {DayDTO} from "../../dto/DayDTO";
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
   details!: CompanyDetailsDTO;
 
-  constructor(private companyDetailsService: CompanyDetailsService) {}
+  constructor(private companyDetailsService: CompanyDetailsService) {
+  }
 
   ngOnInit(): void {
     this.handleCompanyDetailsGetRequest();
   }
 
   private handleCompanyDetailsGetRequest() {
-    this.companyDetailsService.getCompanyDetails().subscribe(
-      response => {
-        this.details = response
-      }
-    )
+    this.companyDetailsService.getCompanyDetails()
+      .subscribe(
+        response => {
+          this.details = response
+        }
+      )
   }
 
   sortWeekDays(days: DayDTO[]) {
@@ -49,10 +50,17 @@ export class HomepageComponent implements OnInit {
   }
 
   getFullAddress(address: AddressDTO): string {
-    return address.buildingNumber + " "
-      + address.street + " "
-      + address.city + ", "
-      + address.postalCode + " "
-      + address.country
+    if(address != undefined) {
+      return address.buildingNumber + " "
+        + address.street + " "
+        + address.city + ", "
+        + address.postalCode + " "
+        + address.country;
+    }
+    else {
+      return "";
+    }
+
+
   }
 }

@@ -4,9 +4,10 @@ import {CarGroupDTO} from "../dto/CarGroupDTO";
 import {CarDTO} from "../dto/CarDTO";
 import {UserCreateDTO} from "../dto/UserCreateDTO";
 import {UserGetDTO} from "../dto/UserGetDTO";
-import {ReservationDTO} from "../dto/ReservationDTO";
+import {VisitDTO} from "../dto/VisitDTO";
 import {TokenDTO} from "../dto/TokenDTO";
 import {LoginDTO} from "../dto/LoginDTO";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -17,27 +18,30 @@ export class UserService {
   cars!: CarDTO[];
   carsInGroups!: CarGroupDTO[];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   async getToken(loginData: LoginDTO) {
-     return this.httpClient.post<TokenDTO>(this.serviceApiURL + "/users/auth", loginData)
-       .toPromise()
-       .catch(() => alert("Invalid users data!"));
+    return this.httpClient.post<TokenDTO>(this.serviceApiURL + "/users/auth", loginData)
+      .toPromise()
+      .catch(() => console.log("Invalid users data!"));
   }
 
   getHeaders() {
     let token = localStorage.getItem('token');
 
     if (token != undefined) {
-      return {headers: new HttpHeaders({
+      return {
+        headers: new HttpHeaders({
           'Authorization': `Bearer ` + token,
           'Content-Type': 'application/json'
-        })};
-    }
-    else {
-       return {headers: new HttpHeaders({
+        })
+      };
+    } else {
+      return {
+        headers: new HttpHeaders({
           'Content-Type': 'application/json'
-        })};
+        })
+      };
     }
   }
 
@@ -70,7 +74,7 @@ export class UserService {
     } as LoginDTO;
 
     this.getToken(loginDTO).then(token => {
-      if(token != undefined) {
+      if (token != undefined) {
         console.log(token);
         this.setTokenAndLoginData(token, loginDTO);
       }
@@ -86,29 +90,29 @@ export class UserService {
 
   registerNewUser(user: UserCreateDTO) {
     this.httpClient.post(this.serviceApiURL + "/users/new", user)
-      .subscribe( response => {
+      .subscribe(response => {
           console.log(response);
-          },
+        },
+        error => {
+          console.log(error);
+        });
+    this.router.navigateByUrl('/').then(r => window.location.reload());
+  }
+
+  postNewCar(car: CarDTO) {
+    this.httpClient.post(this.serviceApiURL + "/users/vehicle", car, this.getHeaders())
+      .subscribe(response => {
+          console.log(response);
+        },
         error => {
           console.log(error);
           this.renewToken();
         });
   }
 
-  postNewCar(car: CarDTO) {
-    this.httpClient.post(this.serviceApiURL + "/users/vehicle", car, this.getHeaders())
-      .subscribe( response => {
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-        this.renewToken();
-      });
-  }
-
-  postNewReservation(reservation: ReservationDTO) {
+  postNewVisit(reservation: VisitDTO) {
     this.httpClient.post("http://localhost:8080/visits/new", reservation, this.getHeaders())
-      .subscribe( response => {
+      .subscribe(response => {
           console.log(response);
         },
         error => {
@@ -133,11 +137,15 @@ export class UserService {
   deleteUserCar(vin: string) {
     this.httpClient.delete(this.serviceApiURL + "/users/vehicle/" + vin, this.getHeaders())
       .subscribe(response => {
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-        this.renewToken();
-      });
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+          this.renewToken();
+        });
+  }
+
+  reloadToHomepage() {
+    this.router.navigateByUrl('').then(() => window.location.reload());
   }
 }

@@ -10,22 +10,24 @@ import {CarDTO} from "../../dto/CarDTO";
 })
 export class VehiclesComponent implements OnInit {
   cars!: CarGroupDTO[]
-  models: string[] = []
+  models!: string[] | undefined
   markKey!: string
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getGroupedCars();
+    this.userService.getGroupedCars();
+    this.cars = this.userService.carsInGroups;
     this.refresh();
   }
 
   onChange(event: Event) {
     this.markKey = (event.target as HTMLInputElement).value;
 
-    if (this.cars != null) {
-      // @ts-ignore
-      this.models = this.cars.find( car => car['brandName'] == this.markKey).models;
+    this.cars = this.userService.carsInGroups;
+
+    if (this.cars != undefined) {
+      this.models = this.cars.find( car => car['brandName'] == this.markKey)?.models;
     }
   }
 
@@ -46,6 +48,10 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
+  isModelEmpty() {
+    return this.models != undefined;
+  }
+
   refresh() {
     this.userService.getAllUserCars();
   }
@@ -57,10 +63,5 @@ export class VehiclesComponent implements OnInit {
   remove(vin: string) {
     console.log(vin)
     this.userService.deleteUserCar(vin);
-  }
-
-  private getGroupedCars() {
-    this.userService.getGroupedCars();
-    this.cars = this.userService.carsInGroups;
   }
 }

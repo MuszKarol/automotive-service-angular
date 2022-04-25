@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {ReservationDTO} from "../../dto/ReservationDTO";
+import {VisitDTO} from "../../dto/VisitDTO";
 
 @Component({
-  selector: 'app-reservation-panel',
-  templateUrl: './reservation-panel.component.html',
-  styleUrls: ['./reservation-panel.component.css']
+  selector: 'app-visit-panel',
+  templateUrl: './visit-panel.component.html',
+  styleUrls: ['./visit-panel.component.css']
 })
-export class ReservationPanelComponent implements OnInit {
+export class VisitPanelComponent implements OnInit {
   private _currentDate!: string;
 
   constructor(private userService: UserService) {}
@@ -21,18 +21,17 @@ export class ReservationPanelComponent implements OnInit {
     return this._currentDate;
   }
 
-  postNewReservation(model: any) {
+  addNewVisit(model: any) {
     console.log(model.visitDate);
 
-    const reservation = {
+    const visit = {
       faultDetails: model.faultDetails,
       carDeliveryDate: model.visitDate,
       clientEmail: "test@test.com",
-      mechanicEmail: "mechanictest@test.com",
       vinCode: model.vin
-    } as ReservationDTO;
+    } as VisitDTO;
 
-    this.userService.postNewReservation(reservation);
+    this.userService.postNewVisit(visit);
   }
 
   getUsersCars() {

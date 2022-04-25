@@ -1,27 +1,28 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ReservationGetDTO} from "../dto/ReservationGetDTO";
-import {ReservationPatchDTO} from "../dto/ReservationPatchDTO";
+import {VisitGetDTO} from "../dto/VisitGetDTO";
+import {VisitPatchDTO} from "../dto/VisitPatchDTO";
 import {CarPartDTO} from "../dto/CarPartDTO";
 import {UserService} from "./user.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdministrationService implements OnInit{
-  newReservations!: ReservationGetDTO[];
-  acceptedReservations!: ReservationGetDTO[];
+  newReservations!: VisitGetDTO[];
+  acceptedReservations!: VisitGetDTO[];
   carParts!: CarPartDTO[];
 
   constructor(private httpClient: HttpClient, private userService: UserService) {}
 
   ngOnInit(): void {}
 
-  public getNewReservations(): ReservationGetDTO[] {
+  public getNewReservations(): VisitGetDTO[] {
     return this.newReservations;
   }
 
-  public getAcceptedReservations(): ReservationGetDTO[] {
+  public getAcceptedReservations(): VisitGetDTO[] {
     return this.acceptedReservations;
   }
 
@@ -29,7 +30,11 @@ export class AdministrationService implements OnInit{
     return this.carParts;
   }
 
-  public changeVisitStatus(reservationPatchDTO: ReservationPatchDTO) {
+  public getUserVisits(): Observable<VisitGetDTO[]> {
+    return this.httpClient.get<VisitGetDTO[]>("http://localhost:8080/visits/client", this.userService.getHeaders());
+  }
+
+  public changeVisitStatus(reservationPatchDTO: VisitPatchDTO) {
     this.httpClient.patch("http://localhost:8080/visits", reservationPatchDTO, this.userService.getHeaders())
       .subscribe(response => {
         console.log(response);
@@ -66,7 +71,7 @@ export class AdministrationService implements OnInit{
   }
 
   private getAllReservationsWithStatusNew() {
-    this.httpClient.get<ReservationGetDTO[]>("http://localhost:8080/visits/new", this.userService.getHeaders())
+    this.httpClient.get<VisitGetDTO[]>("http://localhost:8080/visits/new", this.userService.getHeaders())
       .subscribe(response => {
         this.newReservations = response;
       },error => {
@@ -75,7 +80,7 @@ export class AdministrationService implements OnInit{
   }
 
   private getAllReservationsWithStatusAcceptedAndActive() {
-    this.httpClient.get<ReservationGetDTO[]>("http://localhost:8080/visits/accepted", this.userService.getHeaders())
+    this.httpClient.get<VisitGetDTO[]>("http://localhost:8080/visits/accepted", this.userService.getHeaders())
       .subscribe(response => {
         this.acceptedReservations = response;
       },

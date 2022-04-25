@@ -4,17 +4,19 @@ import {HomepageComponent} from "./component/homepage/homepage.component";
 import {LoginComponent} from "./component/login/login.component";
 import {OrdersComponent} from "./component/orders/orders.component";
 import {RegisterComponent} from "./component/register/register.component";
-import {ReservationPanelComponent} from "./component/reservation-panel/reservation-panel.component";
-import {ReservationsComponent} from "./component/reservations/reservations.component";
+import {VisitPanelComponent} from "./component/visit-panel/visit-panel.component";
+import {VisitsComponent} from "./component/visits/visits.component";
 import {VehiclesComponent} from "./component/vehicles/vehicles.component";
+import {UserVisitsComponent} from "./component/user-visits/user-visits.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'orders', component: OrdersComponent},
-  {path: 'reservation-panel', component: ReservationPanelComponent},
-  {path: 'reservations', component: ReservationsComponent},
+  {path: 'visit-panel', component: VisitPanelComponent},
+  {path: 'visits', component: VisitsComponent},
+  {path: 'user-visits', component: UserVisitsComponent},
   {path: 'vehicles', component: VehiclesComponent}
 ];
 
