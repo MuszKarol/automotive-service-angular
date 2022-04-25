@@ -17,14 +17,18 @@ export class RegisterComponent implements OnInit {
     if (model.vin == '') {
       alert("VIN number not entered!");
     }
+    if ((model.firstPassword != model.secondPassword) && (model.firstPassword == "")) {
+      alert("Check passwords!");
+    }
     else {
       const user = {
         email: model.email,
         name: model.name,
         surname: model.surname,
+        password: model.firstPassword,
         role: "CLIENT",
         address: {
-          buildingNumber: model.bNumber,
+          buildingNumber: model.buildingNumber,
           street: model.street,
           postalCode: model.postalCode,
           city: model.city,

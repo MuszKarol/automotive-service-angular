@@ -3,6 +3,7 @@ import {ContactDTO} from "./ContactDTO";
 
 export interface UserCreateDTO {
   email: string;
+  password: string;
   name: string;
   surname: string;
   role: string;

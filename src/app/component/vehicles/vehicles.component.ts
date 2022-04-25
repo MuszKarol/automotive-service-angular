@@ -13,7 +13,7 @@ export class VehiclesComponent implements OnInit {
   models: string[] = []
   markKey!: string
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.getGroupedCars();

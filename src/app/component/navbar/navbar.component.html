@@ -9,30 +9,30 @@
           <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/reservations">Reservations</a>
+          <a class="nav-link" routerLink="/reservations" *ngIf="admin">Reservations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/orders">Orders</a>
+          <a class="nav-link" routerLink="/orders" *ngIf="admin">Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Login</a>
+          <a class="nav-link" routerLink="/login" *ngIf="isLogged">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register">Register</a>
+          <a class="nav-link" routerLink="/register" *ngIf="isLogged">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/reservation-panel">Reservation</a>
+          <a class="nav-link" routerLink="/reservation-panel" *ngIf="client">Reservation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/vehicles">Vehicles</a>
+          <a class="nav-link" routerLink="/vehicles" *ngIf="client">Vehicles</a>
         </li>
       </ul>
 
-      <ul class="nav navbar-nav ms-auto">
+      <ul class="nav navbar-nav ms-auto" *ngIf="!isLogged">
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">test@test.com</a>
-          <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" routerLink="/">Logout</a>
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{getUserEmail()}}</a>
+          <div class="dropdown-menu dropdown-menu-end" >
+            <a class="dropdown-item" routerLink="" (click)="logout()">Logout</a>
           </div>
         </li>
       </ul>
