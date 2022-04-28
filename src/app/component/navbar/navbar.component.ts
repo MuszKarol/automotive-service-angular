@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 
 @Component({
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   admin: boolean = false;
   isLogged: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.admin = this.isUserLogged("ADMIN");

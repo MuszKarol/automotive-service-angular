@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdministrationService} from "../../service/administration.service";
 import {CarPartDTO} from "../../dto/CarPartDTO";
 
@@ -9,7 +9,8 @@ import {CarPartDTO} from "../../dto/CarPartDTO";
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(private service: AdministrationService) { }
+  constructor(private service: AdministrationService) {
+  }
 
   ngOnInit(): void {
     this.service.updateCarPartList();
@@ -20,10 +21,9 @@ export class OrdersComponent implements OnInit {
   }
 
   createNewCarPart(model: any) {
-    if(model.code == "") {
+    if (model.code == "") {
       alert("No product code!")
-    }
-    else {
+    } else {
       const carPart = {
         code: model.code,
         name: model.partName,

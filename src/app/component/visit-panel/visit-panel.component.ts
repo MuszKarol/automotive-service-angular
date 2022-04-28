@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {VisitDTO} from "../../dto/VisitDTO";
 
@@ -10,7 +10,8 @@ import {VisitDTO} from "../../dto/VisitDTO";
 export class VisitPanelComponent implements OnInit {
   private _currentDate!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this._currentDate = new Date().toISOString();
@@ -22,12 +23,13 @@ export class VisitPanelComponent implements OnInit {
   }
 
   addNewVisit(model: any) {
-    console.log(model.visitDate);
-
     const visit = {
       faultDetails: model.faultDetails,
       carDeliveryDate: model.visitDate,
-      clientEmail: "test@test.com",
+      acceptationDate: model.visitDate,
+      expectedStartServiceDate: model.visitDate,
+      expectedEndServiceDate: model.visitDate,
+      clientEmail: this.userService.getEmail(),
       vinCode: model.vin
     } as VisitDTO;
 

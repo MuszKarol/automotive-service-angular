@@ -2,41 +2,77 @@
   <div class="col-md-6 p-0 mt-4">
     <h3 class="d-flex justify-content-center mt-5">Pending</h3>
     <ul class="list-group p-4 " style="height: 85vh; overflow:hidden; overflow-y:scroll;">
-      <li class="list-group-item col" *ngFor="let visit of getAllPendingVisitRequests()">
+      <li class="list-group-item col border-2 border-warning" *ngFor="let visit of getAllPendingVisitRequests()">
         <div>
+          <p><b>ID:</b> {{visit.id}}</p>
           <p><b>Client phone number:</b> {{visit.clientPhoneNumber}}</p>
           <p><b>Client email:</b> {{visit.clientEmail}}</p>
-          <p><b>Visit date (customer suggestion):</b> {{visit.carDeliveryDate}}</p>
           <p><b>Fault details: </b> {{visit.faultDetails}}</p>
-          <p><b>Car:</b> {{visit.brandName}} {{visit.modelName}}</p>
-          <p><b>VIN code:</b> {{visit.vinCode}}</p>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-2">
-          <p><b>ID:</b> {{visit.id}}</p>
-          <div>
-            <button type="button" class="btn btn-success" style="margin-right: 1em" (click)="acceptReservationRequest(visit)"
-                    onClick="window.location.reload();" >Accept</button>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 30%">Car details</th>
+              <th scope="col" style="width: 20%">VIN</th>
+              <th scope="col" style="width: 20%">License Plate</th>
+              <th scope="col" style="width: 30%">Car Registration Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{visit.brandName}} {{visit.modelName}} {{visit.version}} {{visit.engine}}</td>
+              <td>{{visit.vinCode}}</td>
+              <td>{{visit.licensePlateNumbers}}</td>
+              <td>{{visit.carRegistrationDate}}</td>
+            </tr>
+            </tbody>
+          </table>
 
-            <button type="button" class="btn btn-danger" (click)="rejectReservationRequest(visit)"
-                    onClick="window.location.reload();">Reject</button>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 33%">Visit date (suggestion)</th>
+              <th scope="col" style="width: 33%">Start of service (expected)</th>
+              <th scope="col" style="width: 34%">End of service (expected)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{visit.carDeliveryDate}}</td>
+              <td>{{visit.expectedStartServiceDate}}</td>
+              <td>{{visit.expectedEndServiceDate}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end align-content-end mb-2">
+          <div>
+            <button type="button" class="btn btn-success" style="width: 5em; margin-right: 1em"
+                    (click)="acceptVisitRequest(visit)"
+                    onClick="window.location.reload();">Accept
+            </button>
+
+            <button type="button" class="btn btn-danger" style="width: 5em" (click)="rejectVisitRequest(visit)"
+                    onClick="window.location.reload();">Reject
+            </button>
           </div>
         </div>
         <div class="border-top">
           <form class="d-flex justify-content-between align-items-start mb-2" #reservation="ngForm"
-                (ngSubmit)="modifyReservationRequest(reservation.value, visit.id)">
+                (ngSubmit)="modifyVisitRequest(reservation.value, visit.id)">
             <div class="p-2">
               <b>Delivery car date</b>
               <input type="date" class="form-control" name="deliveryDate" ngModel>
             </div>
             <div class="p-2">
-              <b>Start service date</b>
+              <b>Start of service</b>
               <input type="date" class="form-control" name="startServiceDate" ngModel>
             </div>
             <div class="p-2">
-              <b>End service date</b>
+              <b>End of service</b>
               <input type="date" class="form-control" name="endServiceDate" ngModel>
             </div>
-            <button type="submit" value="submit" class="btn btn-warning mt-4" onClick="window.location.reload();">
+            <button type="submit" value="submit" class="btn btn-warning mt-4" style="width: 5em"
+                    onClick="window.location.reload();">
               Modify
             </button>
           </form>
@@ -47,20 +83,61 @@
   <div class="col-md-6 p-0 mt-4">
     <h3 class="d-flex justify-content-center mt-5">Accepted</h3>
     <ul class="list-group p-4" style="height: 85vh; overflow:hidden; overflow-y:scroll;">
-      <li class="list-group-item d-flex justify-content-between align-items-start"
+      <li class="list-group-item d-flex justify-content-between align-items-start border-2 border-success"
           *ngFor="let visit of getAllAcceptedAndUnfinishedVisits()">
-        <div>
-          <p><b>Status:</b> {{visit.serviceStatus}}</p>
-          <p><b>Client phone number:</b> {{visit.clientPhoneNumber}}</p>
+        <div class="w-75">
+          <p style="color: green"><b style="color: black">Status: </b><b>{{visit.serviceStatus}}</b></p>
+          <p><b>ID:</b> {{visit.id}}</p>
+          <p><b>Phone number:</b> {{visit.clientPhoneNumber}}</p>
+          <p><b>Email:</b> {{visit.clientEmail}}</p>
           <p><b>Fault details: </b> {{visit.faultDetails}}</p>
-          <p><b>Car:</b> {{visit.brandName}} {{visit.modelName}}</p>
-          <p><b>VIN code:</b> {{visit.vinCode}}</p>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 25%">Acceptation date</th>
+              <th scope="col" style="width: 25%">Visit date</th>
+              <th scope="col" style="width: 25%">Start of service</th>
+              <th scope="col" style="width: 25%">End of service</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{visit.acceptationDate}}</td>
+              <td>{{visit.carDeliveryDate}}</td>
+              <td>{{visit.expectedStartServiceDate}}</td>
+              <td>{{visit.expectedEndServiceDate}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 20%">Car brand</th>
+              <th scope="col" style="width: 20%">Car model</th>
+              <th scope="col" style="width: 20%">Car version</th>
+              <th scope="col" style="width: 20%">Engine</th>
+              <th scope="col" style="width: 20%">VIN</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{visit.brandName}}</td>
+              <td>{{visit.modelName}}</td>
+              <td>{{visit.version}}</td>
+              <td>{{visit.engine}}</td>
+              <td>{{visit.vinCode}}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <div>
-          <button type="button" class="btn btn-success" style="margin-right: 1em" (click)="startService(visit)"
-                  onClick="window.location.reload();">Start</button>
+          <button type="button" class="btn btn-success" style="margin-right: 1em; width: 5em"
+                  (click)="startService(visit)"
+                  onClick="window.location.reload();">Start
+          </button>
           <button type="button" class="btn btn-danger" (click)="finishService(visit)"
-                  onClick="window.location.reload();">End</button>
+                  onClick="window.location.reload();" style="width: 5em">End
+          </button>
         </div>
       </li>
     </ul>

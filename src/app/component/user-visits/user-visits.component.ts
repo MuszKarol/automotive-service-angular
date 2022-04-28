@@ -10,7 +10,8 @@ import {VisitGetDTO} from "../../dto/VisitGetDTO";
 export class UserVisitsComponent implements OnInit {
   visits!: VisitGetDTO[];
 
-  constructor(private administrationService: AdministrationService) { }
+  constructor(private administrationService: AdministrationService) {
+  }
 
   ngOnInit(): void {
     this.getAllUserVisits();
@@ -21,5 +22,13 @@ export class UserVisitsComponent implements OnInit {
       .subscribe(response => {
         this.visits = response;
       });
+  }
+
+  removeVisit(visitGetDTO: VisitGetDTO, status: string) {
+    if (status == 'NEW') {
+      this.administrationService.changeVisitStatus(
+        AdministrationService.createVisitGetDTO(visitGetDTO, "REJECTED")
+      );
+    }
   }
 }

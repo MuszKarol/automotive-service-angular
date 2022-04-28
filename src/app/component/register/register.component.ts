@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {UserCreateDTO} from "../../dto/UserCreateDTO";
 
@@ -9,9 +9,11 @@ import {UserCreateDTO} from "../../dto/UserCreateDTO";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   registerUser(model: any) {
     if (model.vin == '') {
@@ -19,8 +21,7 @@ export class RegisterComponent implements OnInit {
     }
     if ((model.firstPassword != model.secondPassword) && (model.firstPassword == "")) {
       alert("Check passwords!");
-    }
-    else {
+    } else {
       const user = {
         email: model.email,
         name: model.name,

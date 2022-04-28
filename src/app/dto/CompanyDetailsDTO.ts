@@ -8,5 +8,5 @@ export interface CompanyDetailsDTO {
   phoneNumber: string;
   listOfMechanicalServices: MechanicalServiceDTO[];
   address: AddressDTO;
-  listOfOperatingHours: DayDTO[];
+  days: DayDTO[];
 }

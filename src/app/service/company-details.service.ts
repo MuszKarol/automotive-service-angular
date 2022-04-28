@@ -8,7 +8,8 @@ import {Observable} from "rxjs";
 })
 export class CompanyDetailsService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getCompanyDetails(): Observable<CompanyDetailsDTO> {
     return this.httpClient.get<CompanyDetailsDTO>("http://localhost:8080/about");

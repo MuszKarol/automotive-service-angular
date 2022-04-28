@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {CarGroupDTO} from "../../dto/CarGroupDTO";
 import {CarDTO} from "../../dto/CarDTO";
@@ -13,7 +13,8 @@ export class VehiclesComponent implements OnInit {
   models!: string[] | undefined
   markKey!: string
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userService.getGroupedCars();
@@ -27,21 +28,23 @@ export class VehiclesComponent implements OnInit {
     this.cars = this.userService.carsInGroups;
 
     if (this.cars != undefined) {
-      this.models = this.cars.find( car => car['brandName'] == this.markKey)?.models;
+      this.models = this.cars.find(car => car['brandName'] == this.markKey)?.models;
     }
   }
 
   onSubmit(model: any) {
     if (model.vin == '') {
       alert("VIN number not entered!");
-    }
-    else {
+    } else {
 
       const car = {
         vinCode: model.vin,
         licensePlate: model.license,
+        carRegistrationDate: model.carRegistrationDate,
         modelName: model.model,
-        brandName: model.brand
+        brandName: model.brand,
+        version: model.version,
+        engine: model.engine
       } as CarDTO;
 
       this.userService.postNewCar(car);

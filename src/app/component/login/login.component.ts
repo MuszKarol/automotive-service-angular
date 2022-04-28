@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {LoginDTO} from "../../dto/LoginDTO";
 
@@ -9,15 +9,14 @@ import {LoginDTO} from "../../dto/LoginDTO";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 
   async login(model: any) {
     if (model.email == '' || model.password == '') {
       alert("Enter all your login details!")
-    }
-    else {
+    } else {
       const loginDTO = {
         email: model.email,
         password: model.password

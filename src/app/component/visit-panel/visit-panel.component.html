@@ -1,26 +1,30 @@
 <div class="container d-flex justify-content-center h-100">
   <div class="row align-items-center" style="width: 50em">
-    <form #reservation="ngForm" (ngSubmit)="addNewVisit(reservation.value)">
+    <form #visit="ngForm" (ngSubmit)="addNewVisit(visit.value)">
       <div class="row form-group mb-3">
         <h1 class="d-flex justify-content-center">Visit panel</h1>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="select-car">Vehicle</label>
         <select class="form-select" required="true" id="select-car" name="vin" ngModel>
-          <option value="{{car.vinCode}}" name="vin" *ngFor="let car of getUsersCars()" >{{car.brandName}} {{car.modelName}}
-            ({{car.licensePlate}}) - VIN code: {{car.vinCode}}</option>
+          <option value="{{car.vinCode}}" name="vin" *ngFor="let car of getUsersCars()">
+            <p>{{car.brandName}} {{car.modelName}} {{car.version}} {{car.engine}} </p>
+            <p>| VIN: {{car.vinCode}}</p>
+          </option>
         </select>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="fault-details">Fault details</label>
-        <textarea type="text" class="form-control" id="fault-details" placeholder="details" rows="4" style="resize: none;" name="faultDetails" ngModel>
+        <textarea type="text" class="form-control" id="fault-details" placeholder="details" rows="4"
+                  style="resize: none;" name="faultDetails" ngModel>
         </textarea>
       </div>
       <div class="form-group mb-3">
         <label class="form-label" for="visit-date">Preferred date of visit</label>
-        <input class="form-control" type="date" id="visit-date" min="{{currentDate | date:'yyyy-MM-dd'}}" name="visitDate" ngModel>
+        <input class="form-control" type="date" id="visit-date" min="{{currentDate | date:'yyyy-MM-dd'}}"
+               name="visitDate" ngModel>
       </div>
-      <button type="submit" value = "submit" class="btn btn-success w-100 mb-5" onClick="window.location.reload();">
+      <button type="submit" value="submit" class="btn btn-success w-100 mb-5" onClick="window.location.reload();">
         Next
       </button>
     </form>

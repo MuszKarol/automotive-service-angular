@@ -12,8 +12,7 @@ import {DayDTO} from "../../dto/DayDTO";
 export class HomepageComponent implements OnInit {
   details!: CompanyDetailsDTO;
 
-  constructor(private companyDetailsService: CompanyDetailsService) {
-  }
+  constructor(private companyDetailsService: CompanyDetailsService) {}
 
   ngOnInit(): void {
     this.handleCompanyDetailsGetRequest();
@@ -50,17 +49,15 @@ export class HomepageComponent implements OnInit {
   }
 
   getFullAddress(address: AddressDTO): string {
-    if(address != undefined) {
+    if (address != undefined) {
       return address.buildingNumber + " "
         + address.street + " "
         + address.city + ", "
         + address.postalCode + " "
         + address.country;
-    }
-    else {
+    } else {
       return "";
     }
-
-
   }
+
 }

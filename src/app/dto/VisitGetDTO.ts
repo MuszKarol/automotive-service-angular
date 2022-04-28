@@ -10,5 +10,9 @@ export interface VisitGetDTO {
   serviceStatus: string;
   brandName: string;
   modelName: string;
+  version: string;
+  engine: string;
   vinCode: string;
+  licensePlateNumbers: string;
+  carRegistrationDate: Date;
 }

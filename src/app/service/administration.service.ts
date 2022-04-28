@@ -9,14 +9,16 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class AdministrationService implements OnInit{
+export class AdministrationService implements OnInit {
   newReservations!: VisitGetDTO[];
   acceptedReservations!: VisitGetDTO[];
   carParts!: CarPartDTO[];
 
-  constructor(private httpClient: HttpClient, private userService: UserService) {}
+  constructor(private httpClient: HttpClient, private userService: UserService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   public getNewReservations(): VisitGetDTO[] {
     return this.newReservations;
@@ -62,40 +64,50 @@ export class AdministrationService implements OnInit{
   }
 
   public updateAll() {
-    this.getAllReservationsWithStatusAcceptedAndActive();
-    this.getAllReservationsWithStatusNew();
+    this.getAllVisitsWithStatusAcceptedAndActive();
+    this.getAllVisitsWithStatusNew();
   }
 
   public updateCarPartList() {
     this.getAllCarPartDTO();
   }
 
-  private getAllReservationsWithStatusNew() {
+  public static createVisitGetDTO(reservationDTO: VisitGetDTO, status: string): VisitPatchDTO {
+    return {
+      id: reservationDTO.id,
+      serviceStatus: status,
+      carDeliveryDate: reservationDTO.carDeliveryDate,
+      expectedStartServiceDate: reservationDTO.expectedStartServiceDate,
+      expectedEndServiceDate: reservationDTO.expectedEndServiceDate
+    } as VisitPatchDTO;
+  }
+
+  private getAllVisitsWithStatusNew() {
     this.httpClient.get<VisitGetDTO[]>("http://localhost:8080/visits/new", this.userService.getHeaders())
       .subscribe(response => {
         this.newReservations = response;
-      },error => {
+      }, error => {
         this.userService.renewToken();
       });
   }
 
-  private getAllReservationsWithStatusAcceptedAndActive() {
+  private getAllVisitsWithStatusAcceptedAndActive() {
     this.httpClient.get<VisitGetDTO[]>("http://localhost:8080/visits/accepted", this.userService.getHeaders())
       .subscribe(response => {
-        this.acceptedReservations = response;
-      },
-          error => {
+          this.acceptedReservations = response;
+        },
+        error => {
           this.userService.renewToken();
-      });
+        });
   }
 
   private getAllCarPartDTO() {
     this.httpClient.get<CarPartDTO[]>("http://localhost:8080/order/parts", this.userService.getHeaders())
       .subscribe(response => {
-        this.carParts = response;
-      },
-          error => {
+          this.carParts = response;
+        },
+        error => {
           this.userService.renewToken();
-      });
+        });
   }
 }

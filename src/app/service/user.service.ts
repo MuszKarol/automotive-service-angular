@@ -18,7 +18,8 @@ export class UserService {
   cars!: CarDTO[];
   carsInGroups!: CarGroupDTO[];
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {
+  }
 
   async getToken(loginData: LoginDTO) {
     return this.httpClient.post<TokenDTO>(this.serviceApiURL + "/users/auth", loginData)
