@@ -7,8 +7,8 @@
           <p><b>Fault details: </b> {{visit.faultDetails}}</p>
           <p><b>Car details:</b> {{visit.brandName}} {{visit.modelName}} {{visit.version}} {{visit.engine}}</p>
           <p><b>VIN:</b> {{visit.vinCode}}</p>
-          <p><b>Visit date:</b> {{visit.carDeliveryDate}}</p>
-          <p><b>End of service:</b> {{visit.expectedEndServiceDate}}</p>
+          <p *ngIf="showVisitDate(visit.serviceStatus)"><b>Visit date:</b> {{visit.carDeliveryDate}}</p>
+          <p *ngIf="showEndOfServiceDate(visit.serviceStatus)"><b>End of service:</b> {{visit.expectedEndServiceDate}}</p>
         </div>
         <button type="button" class="btn btn-danger" (click)="removeVisit(visit, visit.serviceStatus)"
                 onClick="window.location.reload();" *ngIf="visit.serviceStatus == 'NEW'">

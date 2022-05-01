@@ -31,4 +31,12 @@ export class UserVisitsComponent implements OnInit {
       );
     }
   }
+
+  showEndOfServiceDate(serviceStatus: string) {
+    return !(serviceStatus == "NEW" || serviceStatus == "REJECTED");
+  }
+
+  showVisitDate(serviceStatus: string) {
+    return !(serviceStatus == "REJECTED");
+  }
 }
