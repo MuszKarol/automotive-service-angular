@@ -6,7 +6,6 @@ export interface UserCreateDTO {
   password: string;
   name: string;
   surname: string;
-  role: string;
   address: AddressDTO;
   contactDetails: ContactDTO;
 }

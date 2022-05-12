@@ -3,11 +3,11 @@ import {AdministrationService} from "../../service/administration.service";
 import {CarPartDTO} from "../../dto/CarPartDTO";
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-parts',
+  templateUrl: './parts.component.html',
+  styleUrls: ['./parts.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class PartsComponent implements OnInit {
 
   constructor(private service: AdministrationService) {
   }

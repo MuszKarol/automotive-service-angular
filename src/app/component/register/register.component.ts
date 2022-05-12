@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
         name: model.name,
         surname: model.surname,
         password: model.firstPassword,
-        role: "CLIENT",
         address: {
           buildingNumber: model.buildingNumber,
           street: model.street,
@@ -40,7 +39,7 @@ export class RegisterComponent implements OnInit {
         }
       } as UserCreateDTO;
 
-      this.userService.registerNewUser(user);
+      this.userService.registerNewClient(user);
     }
   }
 

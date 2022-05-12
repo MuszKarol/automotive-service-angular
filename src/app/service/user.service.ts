@@ -89,8 +89,8 @@ export class UserService {
       });
   }
 
-  registerNewUser(user: UserCreateDTO) {
-    this.httpClient.post(this.serviceApiURL + "/users/new", user)
+  registerNewClient(user: UserCreateDTO) {
+    this.httpClient.post(this.serviceApiURL + "/users/new/client", user)
       .subscribe(response => {
           console.log(response);
         },
