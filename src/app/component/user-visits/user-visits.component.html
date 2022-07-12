@@ -1,0 +1,20 @@
+<div class="container d-flex justify-content-center h-100">
+  <div class="row align-items-center w-100 p-3">
+    <ul class="list-group mt-5" style="height: 85vh; overflow:hidden; overflow-y:scroll;">
+      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let visit of visits">
+        <div>
+          <p><b>Status:</b> {{visit.serviceStatus}}</p>
+          <p><b>Fault details: </b> {{visit.faultDetails}}</p>
+          <p><b>Car details:</b> {{visit.brandName}} {{visit.modelName}} {{visit.version}} {{visit.engine}}</p>
+          <p><b>VIN:</b> {{visit.vinCode}}</p>
+          <p *ngIf="showVisitDate(visit.serviceStatus)"><b>Visit date:</b> {{visit.carDeliveryDate}}</p>
+          <p *ngIf="showEndOfServiceDate(visit.serviceStatus)"><b>End of service:</b> {{visit.expectedEndServiceDate}}</p>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeVisit(visit, visit.serviceStatus)"
+                onClick="window.location.reload();" *ngIf="visit.serviceStatus == 'NEW'">
+          Remove
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
